@@ -7,6 +7,7 @@ from django.utils.html import format_html, mark_safe
 from event_store.models import Event
 from reviewer.filters import ReviewerOrganizationFilter, review_widget
 from huerta.filters import CollapsedListFilter
+from .filters import SortFilter
 
 def phone_format(phone):
     return format_html('<span style="white-space: nowrap">{}</span>',
@@ -102,7 +103,8 @@ class EventAdmin(admin.ModelAdmin):
                    ('ends_at', CollapsedListFilter),
                    ('attendee_count', CollapsedListFilter),
                    ('status', CollapsedListFilter),
-                   ('host_is_confirmed', CollapsedListFilter))
+                   ('host_is_confirmed', CollapsedListFilter),
+                   SortFilter)
     list_display_links = None
 
     def get_actions(self, request):
